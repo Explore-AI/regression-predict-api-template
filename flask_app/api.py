@@ -1,11 +1,19 @@
 """
 
-    Simple Flask-based API for Model Serving.
+    Simple Flask-based API for Serving an Sklearn Model.
 
     Author: Explore Data Science Academy.
-    Note: Plase follow the instructions provided within the README.md file
-    located within this directory for guidance on how to setup this minimal
-    Flask Webserver to serve your developed models within a simple API.
+
+    Note:
+    ---------------------------------------------------------------------
+    Plase follow the instructions provided within the README.md file
+    located within this directory for guidance on how to use this script
+    correctly.
+    ---------------------------------------------------------------------
+
+    Description: This file instantiates a Flask webserver
+    as a means to create a simple API used to deploy models trained within
+    the sklearn framework.
 
 """
 
@@ -21,11 +29,17 @@ app = Flask(__name__)
 
 # Load our model into memory.
 # Please update this path to reflect your own trained model.
-static_model = load_model(path_to_model='assets/trained-models/lm_regression_model.pkl')
+static_model = load_model(
+    path_to_model='assets/trained-models/sendy_simple_lm_regression.pkl')
 
-# Define the API interface.
+print ('-'*40)
+print ('Model succesfully loaded')
+print ('-'*40)
+
+# Define the API's interface.
 # Here the 'model_prediction()' function will be called when a POST request
-# is sent to our interface located at http:{EC2-IP-public-address}:5000/api_v0.1
+# is sent to our interface located at:
+# http:{Host-machine-ip-address}:5000/api_v0.1
 @app.route('/api_v0.1', methods=['POST'])
 def model_prediction():
     # We retrieve the data payload of the POST request
@@ -38,5 +52,9 @@ def model_prediction():
     return jsonify(output)
 
 # Configure Server Startup properties.
+# Note:
+# When developing your API, set `debug=True`
+# This will allow Flask to automatically restart itself everytime you
+# update your API code.
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=False)

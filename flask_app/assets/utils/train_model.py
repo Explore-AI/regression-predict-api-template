@@ -1,40 +1,34 @@
 """
     Simple file to create a Sklearn model for deployment in our API
 
-    !! WIP !!
+    Author: Explore Data Science Academy
 
-    To be updated with correct model format
+    Description: This script is responsible for training a simple linear
+    regression model which is used within the API for initial demonstration
+    purposes.
 
 """
 
 # Dependencies
-import numpy as np
 import pandas as pd
 import pickle
-import requests
-import json
-from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 
 # Fetch training data and preprocess for modeling
-df = pd.read_csv("https://raw.githubusercontent.com/vyashemang/flask-salary-predictor/master/Salary_Data.csv")
+train = pd.read_csv('data/train_data.csv')
+riders = pd.read_csv('data/riders.csv')
+train = train.merge(riders, how='left', on='Rider Id')
 
-X = df.iloc[:,:-1].values
-y = df.iloc[:,-1:].values
-
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3,
-                                                    random_state = 42)
+y_train = train[['Time from Pickup to Arrival']]
+X_train = train[['Pickup Lat','Pickup Long',
+                 'Destination Lat','Destination Long']]
 
 # Fit model
 lm_regression = LinearRegression(normalize=True)
+print ("Training Model...")
 lm_regression.fit(X_train, y_train)
-orig_pred = lm_regression.predict([[2.2]])
 
-# Pickle model for use in API
-pickle.dump(lm_regression, open('../trained-models/lm_regression_model.pkl','wb'))
-
-# Restore model for testing
-rest_lm_model = pickle.load(open('../trained-models/lm_regression_model.pkl','rb'))
-new_pred = rest_lm_model.predict([[2.2]])
-
-orig_pred == new_pred
+# Pickle model for use within our API
+save_path = '../trained-models/sendy_simple_lm_regression.pkl'
+print (f"Training completed. Saving model to: {save_path}")
+pickle.dump(lm_regression, open(save_path,'wb'))

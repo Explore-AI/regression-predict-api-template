@@ -1,8 +1,12 @@
-# EDSA Academy Regression Sprint
-## Model API and Static Webpage Template Repository
+# EDSA Regression Predict
+## Simple Model API
 
-### Description
- - To be populated soon.
+### Overview
 
-### Instructions for use
- - To be populated soon.
+![Flask Web-server](assets/imgs/API.png)
+
+### Instructions for Using this Repo within the Predict
+
+### FAQ
+
+![Explore Data Science Academy](assets/imgs/EDSA_logo.png)

@@ -7,8 +7,6 @@ This repository forms the basis of *Task 2* for the **Regression Predict** withi
 
 #### 1.1) Wait, what is an API again?
 
-[![Alternate Text](assets/imgs/What_is_an_API.png)]({https://youtu.be/s7wmiS2mSXY} "Link Title")
-
 [![What is an API](assets/imgs/What_is_an_API.png)](https://youtu.be/s7wmiS2mSXY)
 
 An API - or Application Programming Interface - refers to a set of procedures and protocols that allows us to send and request information between ourselves and remote applications. You can think of this as a channel of communication to a remote server using specific commands that allow you to use their applications without needing to host that functionality yourself. Many types of API's exist, but for this predict task we are interested specifically in Web API's. These allow us to send and receive information using web development languages, such as HTML and JSON. The video above provides a simple and intuitive explanation of how API's operate.

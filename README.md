@@ -112,6 +112,36 @@ Congratulations! You've now officially deployed your first web server API, and h
 With these steps completed, we're now ready to both modify the template code to place our own model within the API, and to host this API within an AWS EC2 instance. These processes are outlined within the sections below.  
 
 #### 2.3) Updating the API to use your own model
+| :information_source: NOTE :information_source: |
+|:--------------------|
+|We strongly encourage you to be familiar with running the API as described in Section 2.2 before attempting to use your own model.|
+
+##### Prerequisites
+Before you can update the API code-base to use your own custom model, you will need to have the following:
+
+ - Your own `sklearn` model, trained and saved as a `.pkl` file.
+
+    For a simple example of how to pickle your model, review the script found in `utils/train_model.py`. For further instructions, consult the *'Saving and Restoring Models in Python'* train in Athena.     
+
+    (Note: You are not limited to use only a single model within the API. Furthermore, other `sklearn` structures which have saved parameters may be required for your model to function as well. Obviously, you are expected to handle the loading of such structures in a similar way as described within this section.)
+
+  - Code for the data preprocessing pipeline used to train your model.
+
+      This code should cover aspects such as data cleaning, feature engineering, feature selection, and feature transformations.
+
+      The requirement of this code is vital as your API is built to provide a standard interface for POST requests. I.e. someone asking your API to make a prediction shouldn't have to worry about what specific features your model uses internally. Instead, anyone who sends a request with the standard features within the public dataset, should expect to receive a prediction result. This design principle makes it far easier to swap out an old model for a newer one, even if ends up using radically different features.
+
+##### Making the changes
+
+Once you've gathered the prerequisites from the above section, making the changes to API is relatively straight forward. It involves three steps:
+
+1. Place your `.pkl` file within the `assets/trained-models/` directory of the repo.
+
+2. Modify the `api.py` file by changing the `path_to_model` variable to reflect the new model `.pkl` file.
+
+3. Modify the `model.py` file by adding your data preprocessing code to the `_preprocess_data()` helper function.  
+
+If the following steps were carried out successfully, running the API should now produce a new prediction result.  
 
 #### 2.4) Running the API on a remote AWS EC2 instance
 | :information_source: NOTE :information_source: |
@@ -205,7 +235,7 @@ You should also see an update to the web server output, indicating that it was c
 102.165.194.240 - - [08/May/2020 07:31:31] "POST /api_v0.1 HTTP/1.1" 200 -
 ```
 
-If you are able to see these messages on both the Host and Client, then your API has succesfully been deployed to the Web. Snap!
+If you are able to see these messages on both the Host and Client, then your API has succesfully been deployed to the Web. Snap :zap:!
 
 ### FAQ
 

@@ -13,7 +13,7 @@
 
     Description: This file contains code used to formulate a POST request
     which can be used to develop/debug the Model API once it has been
-    deployed. 
+    deployed.
 
 """
 
@@ -41,12 +41,15 @@ feature_vector_json = test.iloc[1].to_json()
 url = 'http://127.0.0.1:5000/api_v0.1'
 
 # Perform the POST request.
-print (f"Querying API with the following data: {feature_vector_json}")
-print ("")
+print(f"Sending POST request to web server API at: {url}")
+print("")
+print(f"Querying API with the following data: \n {test.iloc[1].to_list()}")
+print("")
 # Here `api_response` represents the response we get from our API
 api_response = requests.post(url, json=feature_vector_json)
 
 # Display the prediction result
+print("Received POST response:")
 print("*"*50)
 print(f"API prediction result: {api_response.json()[0]}")
 print(f"The response took: {api_response.elapsed.total_seconds()} seconds")

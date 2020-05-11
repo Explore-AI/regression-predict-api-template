@@ -43,25 +43,77 @@ To fork the repo, simply ensure that you are logged into your GitHub account, an
 
 #### 2.2) Running the API on your local machine
 
-As a first step to becoming familiar with our API's functioning, we recommend setting up a running instance on your own local machine. To do this, follow the steps below using your forked repo:
+As a first step to becoming familiar with our API's functioning, we recommend setting up a running instance on your own local machine.
 
- 1. Ensure that you have the prerequisite Python libraries installed:
+To do this, follow the steps below by running the given commands within a Git bash (Windows), or terminal (Mac/Linux):
+
+ 1. Ensure that you have the prerequisite Python libraries installed on your local machine:
 
  ```bash
  pip install -U flask numpy pickle json pandas scikit-learn
  ```
 
- 2. Clone the forked repo to your local machine.
+ 2. Clone the *forked* repo to your local machine.
 
  ```bash
  git clone https://github.com/{your-account-name}/regression-predict-api-template.git
  ```  
 
- 3. Navigate
+ 3. Navigate to the base of the cloned repo, and run the API web-server initialisation script.
 
-#### 2.3) Running the API on a remote AWS EC2 instance
+ ```bash
+ cd regression-predict-api-template/
+ python api.py
+ ```
 
-#### 2.4) Updating the API to use your own model
+ If the web server was able to initialise successfully, the following message should be displayed within your bash/terminal session:
+
+```
+----------------------------------------
+Model succesfully loaded
+----------------------------------------
+ * Serving Flask app "api" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+```
+
+4. Leave the web server script running within the current bash/terminal session. Open a new session, and navigate to the `utils` subfolder of the cloned repo.
+
+```
+cd {your/custom/path}/regression-predict-api-template/utils/
+```
+
+5. Run the `request.py` script located within the utils subfolder to simulate a POST request for our running API.
+
+```
+python request.py
+```
+
+If you receive an error at this point, please ensure that the web server is still running in your original bash/terminal session. If the script ran successfully, you should receive similar output to the message shown below:
+
+```
+Sending POST request to web server API at: http://127.0.0.1:5000/api_v0.1
+
+Querying API with the following data:
+ ['Order_No_21660', 'User_Id_1329', 'Bike', 3, 'Business', 31, 5, '12:16:49 PM', 31, 5, '12:22:48 PM', 31, 5, '12:23:47 PM', 31, 5, '12:38:24 PM', 4, 21.8, nan, -1.2795183, 36.8238089, -1.273056, 36.811298, 'Rider_Id_812', 4402, 1090, 14.3, 1301]
+
+Received POST response:
+**************************************************
+API prediction result: 1547.3014476106036
+The response took: 0.004323 seconds
+**************************************************
+```
+
+Congratulations! You've now officially deployed your first web server API, and have successfully received a response from it.
+
+With these steps completed, we're now ready to both modify the template code to place our own model within the API, and to host this API within an AWS EC2 instance. These processes are outlined within the sections below.  
+
+#### 2.3) Updating the API to use your own model
+
+#### 2.4) Running the API on a remote AWS EC2 instance
 
 
 

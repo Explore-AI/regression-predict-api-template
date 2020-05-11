@@ -1,15 +1,15 @@
 # Flask-based Model API
 #### EXPLORE Data Science Academy Regression Predict
 
-##### Table of Contents
+### Table of Contents
 
 - [Flask-based Model API](#flask-based-model-api)
       - [EXPLORE Data Science Academy Regression Predict](#explore-data-science-academy-regression-predict)
-  * [1) Overview](#1--overview)
-      - [1.1) Wait, what is an API again?](#11--wait--what-is-an-api-again-)
-      - [1.2) How our API will work](#12--how-our-api-will-work)
+  * [1) Overview](#1-overview)
+      - [1.1) Wait, what is an API again?](#11-wait-what-is-an-api-again)
+      - [1.2) How our API will work](#12-how-our-api-will-work)
         * [Description of files](#description-of-files)
-  * [2) Usage Instructions](#2--usage-instructions)
+  * [2) Usage Instructions](#2-usage-instructions)
       - [2.1) Creating a copy of this repo](#21--creating-a-copy-of-this-repo)
       - [2.2) Running the API on your local machine](#22--running-the-api-on-your-local-machine)
       - [2.3) Updating the API to use your own model](#23--updating-the-api-to-use-your-own-model)

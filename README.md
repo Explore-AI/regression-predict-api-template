@@ -5,15 +5,19 @@
 
 ##### Table of Contents
 
-   1. [Overview](#1-overview)
-         1.1. [Wait, what is an API again?](#11-wait-what-is-an-api-again)
-         1.2. [How our API will work](#12-how-our-api-will-work)
-   2. [Usage Instructions](#2-usage-instructions)
-         2.1. [Creating a copy of this repo](#21-creating-a-copy-of-this-repo)
-         2.2. [Running the API on your local machine](#22-running-the-api-on-your-local-machine)
-         2.3. [Updating the API to use your own model](#23-updating-the-api-to-use-your-own-model)
-         2.4. [Running the API on a remote AWS EC2 instance](#24-running-the-api-on-a-remote-aws-ec2-instance)
-   3. [FAQ](#3-faq)
+* [1) Overview](#1-overview)
+      * [1.1) Wait, what is an API again?](#11-wait-what-is-an-api-again)
+      * [1.2) How our API will work](#12-how-our-api-will-work)
+         * [Description of files](#description-of-files)
+* [2) Usage Instructions](#2-usage-instructions)
+      * [2.1) Creating a copy of this repo](#21-creating-a-copy-of-this-repo)
+      * [2.2) Running the API on your local machine](#22-running-the-api-on-your-local-machine)
+      * [2.3) Updating the API to use your own model](#23-updating-the-api-to-use-your-own-model)
+         * [Prerequisites](#prerequisites)
+         * [Making the changes](#making-the-changes)
+      * [2.4) Running the API on a remote AWS EC2 instance](#24-running-the-api-on-a-remote-aws-ec2-instance)
+* [3) FAQ](#3-faq)
+
 
 ## 1) Overview
 

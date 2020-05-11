@@ -1,6 +1,20 @@
 # Flask-based Model API
 #### EXPLORE Data Science Academy Regression Predict
 
+---
+
+##### Table of Contents
+
+   1. [Overview](#1-overview)
+         1.1. [Wait, what is an API again?](#11-wait-what-is-an-api-again)
+         1.2. [How our API will work](#12-how-our-api-will-work)
+   2. [Usage Instructions](#2-usage-instructions)
+         2.1. [Creating a copy of this repo](#21-creating-a-copy-of-this-repo)
+         2.2. [Running the API on your local machine](#22-running-the-api-on-your-local-machine)
+         2.3. [Updating the API to use your own model](#23-updating-the-api-to-use-your-own-model)
+         2.4. [Running the API on a remote AWS EC2 instance](#24-running-the-api-on-a-remote-aws-ec2-instance)
+   3. [FAQ](#3-faq)
+
 ## 1) Overview
 
 This repository forms the basis of *Task 2* for the **Regression Predict** within EDSA's Data Science course. It hosts template code which will enable students to deploy their own developed models through a web server-based API.   
@@ -237,7 +251,7 @@ You should also see an update to the web server output, indicating that it was c
 
 If you are able to see these messages on both the Host and Client, then your API has succesfully been deployed to the Web. Snap :zap:!
 
-### FAQ
+## 3) FAQ
 
 This section of the repo will be periodically updated to represent common questions which may arise around its use. If you detect any problems/bugs, please [create an issue](https://help.github.com/en/github/managing-your-work-on-github/creating-an-issue) and we will do our best to resolve it as quickly as possible.
 

@@ -50,7 +50,7 @@ To do this, follow the steps below by running the given commands within a Git ba
  1. Ensure that you have the prerequisite Python libraries installed on your local machine:
 
  ```bash
- pip install -U flask numpy pickle json pandas scikit-learn
+ pip install -U flask numpy pandas scikit-learn
  ```
 
  2. Clone the *forked* repo to your local machine.
@@ -114,8 +114,98 @@ With these steps completed, we're now ready to both modify the template code to 
 #### 2.3) Updating the API to use your own model
 
 #### 2.4) Running the API on a remote AWS EC2 instance
+| :information_source: NOTE :information_source: |
+|:--------------------|
+|You will only be able to work on this section of the API setup once you've completed the *'Introduction to Amazon AWS - Part I'* train on Athena.|
 
+The following steps will enable you to run your web server API on a remote EC2 instance, allowing it to the accessed by any device/application which has internet access.
 
+Within these setup steps, we will be using a remote EC2 instance, which we will refer to as the ***Host***, in addition to our local machine, which we will call the ***Client***. We use these designations for convenience, and to align our terminology with that of common web server practices. In cases where commands are provided, use Git bash (Windows) or Terminal (Mac/Linux) to enter these.
+
+1. Ensure that you have access to a running AWS EC2 instance with an assigned public IP address. Instructions for this process are found within the *'Introduction to Amazon AWS - Part I'* train on Athena.
+
+2. Install the prerequisite python libraries on both the Host (EC2 instance), and Client (local machine):
+
+```bash
+pip install -U flask numpy pandas scikit-learn
+```
+
+3. Clone your copy of the API repo onto both the Host and Client machines, then navigate to the base of the cloned repo:
+
+```bash
+git clone https://github.com/{your-account-name}/regression-predict-api-template.git
+cd regression-predict-api-template/
+```
+**[On the Host]:**
+
+4.  Run the API web-server initialisation script.
+
+```bash
+python api.py
+```
+
+If this command ran successfully, the following output should be observed on the Host:
+
+```
+----------------------------------------
+Model succesfully loaded
+----------------------------------------
+ * Serving Flask app "api" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+```
+
+**[On the Client]:**
+
+5.  Navigate to the `utils` subdirectory within the repo.
+
+```bash
+cd utils/
+```
+
+6. Open the `request.py` file using your favourite text editor.
+
+    Change the value of the `url` variable to reflect the ***public IP address*** of the Host. (Instructions for getting the public IP address are provided within the *‘Introduction to Amazon AWS - Part I’* train on Athena.)
+
+```bash
+url = 'http://{public-ip-address-of-remote-machine}:5000/api_v0.1'
+```   
+
+7. Once the editing is completed, close the file and run it:
+
+```bash
+python request.py
+```
+
+ If the command ran successfully, you should see output similar to the following:
+
+```
+Sending POST request to web server API at: http://54.229.152.221:5000/api_v0.1
+
+Querying API with the following data:
+ ['Order_No_21660', 'User_Id_1329', 'Bike', 3, 'Business', 31, 5, '12:16:49 PM', 31, 5, '12:22:48 PM', 31, 5, '12:23:47 PM', 31, 5, '12:38:24 PM', 4, 21.8, nan, -1.2795183, 36.8238089, -1.273056, 36.811298, 'Rider_Id_812', 4402, 1090, 14.3, 1301]
+
+Received POST response:
+**************************************************
+API prediction result: 1547.3014476106036
+The response took: 0.406473 seconds
+**************************************************
+```
+
+If you have completed the steps in 2.3), then the prediction result should differ from the one given above.
+
+**[On the Host]**
+
+You should also see an update to the web server output, indicating that it was contacted by the Client (the values of this string will differ for your output):
+
+```
+102.165.194.240 - - [08/May/2020 07:31:31] "POST /api_v0.1 HTTP/1.1" 200 -
+```
+
+If you are able to see these messages on both the Host and Client, then your API has succesfully been deployed to the Web. Snap!
 
 ### FAQ
 

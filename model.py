@@ -125,10 +125,10 @@ def _preprocess_data(data):
         if (v != object):
             if (k != "Time_Pic_Arr"):
                 numeric_cols.append(k)
-    elif k.endswith("Time"):
-        time_cols.append(k)
-    else:
-        object_cols.append(k)
+        elif k.endswith("Time"):
+            time_cols.append(k)
+        else:
+            object_cols.append(k)
         
     #Convert an object to numeric (encoding)
     le = LabelEncoder()

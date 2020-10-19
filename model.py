@@ -63,7 +63,7 @@ def _preprocess_data(data):
     #                                    'Destination Lat','Destination Long']]
     
     #Drop data not available in test, Pickup Time + label = Arrival times
-    feature_vector_df = feature_vector_df.drop(['Arrival at Destination - Day of Month', 'Arrival at Destination - Weekday (Mo = 1)', 'Arrival at Destination - Time'], axis=1)
+    #feature_vector_df = feature_vector_df.drop(['Arrival at Destination - Day of Month', 'Arrival at Destination - Weekday (Mo = 1)', 'Arrival at Destination - Time'], axis=1)
 
     #Renaming columns (shorten, remove space, standardize)
     new_names = {"Order No": "Order_No", "User Id": "User_Id", "Vehicle Type": "Vehicle_Type",

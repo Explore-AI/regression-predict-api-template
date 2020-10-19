@@ -97,8 +97,8 @@ def _preprocess_data(data):
     feature_vector_df['Precipitation(mm)'].fillna(feature_vector_df['Precipitation(mm)'].mean(), inplace=True)
     
     #Since, we have not been given the actual dates & bikes (same day) 
-    month_cols = [col for col in full_df.columns if col.endswith("Mon")]
-    weekday_cols = [col for col in full_df.columns if col.endswith("Weekday")]
+    month_cols = [col for col in feature_vector_df.columns if col.endswith("Mon")]
+    weekday_cols = [col for col in feature_vector_df.columns if col.endswith("Weekday")]
 
     count = 0
     instances_of_different_days = [];

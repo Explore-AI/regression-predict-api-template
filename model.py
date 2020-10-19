@@ -131,6 +131,7 @@ def _preprocess_data(data):
             object_cols.append(k)
         
     #Convert an object to numeric (encoding)
+    from sklearn.preprocessing import LabelEncoder
     le = LabelEncoder()
     le.fit(feature_vector_df['Personal_Business'])
     feature_vector_df['Personal_Business'] = le.transform(feature_vector_df['Personal_Business'])

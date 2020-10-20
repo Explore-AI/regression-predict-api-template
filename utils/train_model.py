@@ -25,8 +25,8 @@ from sklearn.metrics import mean_squared_error
 import pickle
 
 # Fetch training data and preprocess for modeling
-train = pd.read_csv("data/train.csv")
-test = pd.read_csv("data/test.csv")
+train = pd.read_csv("data/Train.csv")
+test = pd.read_csv("data/Test.csv")
 
 new = train.drop(['Arrival at Destination - Day of Month',
                   'Arrival at Destination - Weekday (Mo = 1)',

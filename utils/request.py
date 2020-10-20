@@ -25,7 +25,7 @@ import numpy as np
 # Load data from file to send as an API POST request.
 # We prepare a DataFrame with the public test set + riders data
 # from the Zindi challenge.
-test = pd.read_csv('data/test.csv')
+test = pd.read_csv('data/Test.csv')
 riders = pd.read_csv('data/riders.csv')
 test = test.merge(riders, how='left', on='Rider Id')
 

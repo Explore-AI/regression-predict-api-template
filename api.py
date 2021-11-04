@@ -1,8 +1,8 @@
 """
 
-    Simple Flask-based API for Serving an Sklearn Model.
+    Simple Flask-based API for Saving an Sklearn Model.
 
-    Author: Explore Data Science Academy.
+    Author: Kwanda Mazibuko
 
     Note:
     ---------------------------------------------------------------------

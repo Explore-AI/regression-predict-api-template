@@ -59,8 +59,65 @@ def _preprocess_data(data):
     # ---------------------------------------------------------------
 
     # ----------- Replace this code with your own preprocessing steps --------
-    predict_vector = feature_vector_df[['Pickup Lat','Pickup Long',
-                                        'Destination Lat','Destination Long']]
+    df_1 = feature_vector_df.copy() #creating a copy of data
+    
+    df_1['Valencia_pressure'].fillna(df_1['Valencia_pressure'].mean(), inplace=True) #imputing the null with the mean
+    df_1['time'] = pd.to_datetime(df_1['time']) # changing the date datatype
+
+
+    df_1.drop('Unnamed: 0',inplace = True,axis = 1) #deleting the first column
+    cols_to_drop = ['Bilbao_rain_1h','Bilbao_wind_deg','Barcelona_pressure','Barcelona_wind_deg',
+               'Barcelona_rain_1h','Seville_rain_1h','Bilbao_pressure','Madrid_pressure','Valencia_pressure'] #columns to drop
+
+    cols = [item for item in df_1.columns if 'max' in item or 'min' in item or '1h' in item] #selecting new columns
+
+    cols_to = cols_to_drop + cols #combining columns
+
+    df_1.drop(cols_to, inplace = True, axis = 1) #dropping unused columns
+
+    #Changing Dtypes of 'time' from object to 'datetime64'
+    
+    #Changing Dtypes of 'Valencia_wind_deg', 'Seville_pressure' from object to 'category'
+
+
+    cat_cols = [item for item in df_1.columns if 'pressure' in item or 'deg' in item]
+    
+    df_1[cat_cols] = df_1[cat_cols].astype('category')
+    
+    # Encoding 'Valencia_wind_deg', 'Seville_pressure' from 'category' to numeric values using 'cat.codes'
+
+    df_1['Valencia_wind_deg'] = df_1['Valencia_wind_deg'].cat.codes
+    
+    df_1['Seville_pressure'] = df_1['Seville_pressure'].cat.codes
+    
+    # extracing the date from date time
+    
+    df_1['month'] = df_1['time'].dt.month
+    
+    df_1['day'] = df_1['time'].dt.day
+    
+    df_1['time'] = df_1['time'].dt.time
+    
+    # selecting the correct columns and in the correct order
+    
+    column_ = [col for col in df_1.columns if col == 'day' or col == 'time' or col == 'month']
+    
+    others = [item for item in df_1.columns if 'wind'  in item  or  'pressure' in item 
+                      or 'cloud' in item or 'humidity' in item or 'Seville_weather' in item or 'Madrid_temp' in item]
+    
+    column = column_ + others # adding columns
+    
+    df_1 = df_1.reindex(columns = column_titles) # changing the index
+    
+    df_1['time'] = df_1['time'].astype('category') # changing time to category
+    
+    df_1['time'] = df_1['time'].cat.codes #changing time to encoding
+    
+    X_test = df_1[column]
+    
+    X_t = X_test.drop('time',axis = 1)
+    
+    predict_vector = X_t
     # ------------------------------------------------------------------------
 
     return predict_vector

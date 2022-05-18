@@ -59,9 +59,19 @@ def _preprocess_data(data):
     # ---------------------------------------------------------------
 
     # ----------- Replace this code with your own preprocessing steps --------
-    predict_vector = feature_vector_df[['Pickup Lat','Pickup Long',
-                                        'Destination Lat','Destination Long']]
-    # ------------------------------------------------------------------------
+   
+    #train = pd.read_csv("Train.csv")
+    #test = pd.read_csv("Test.csv")
+
+    new = feature_vector_df.drop(['Arrival at Destination - Day of Month',
+                    'Arrival at Destination - Weekday (Mo = 1)',
+                    'Arrival at Destination - Time', 'Distance (KM)'], 
+                    axis=1)
+    #y = np.array(new['Time from Pickup to Arrival']).reshape(-1, 1)
+
+    #df = pd.concat([new,test])
+
+    predict_vector = new.fillna(1)
 
     return predict_vector
 
